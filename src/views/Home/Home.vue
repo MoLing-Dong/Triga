@@ -63,7 +63,8 @@
       </el-card>
       <div class="graph">
         <el-card shadow="hover" style="height: 260px">
-          <echart :chartData="echartData.user" style="height: 240px"></echart>
+          <echart :chartData="echartData.user" 
+          style="height: 240px"></echart>
         </el-card>
         <el-card shadow="hover" style="height: 260px">
           <echart
