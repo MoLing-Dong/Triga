@@ -75,6 +75,7 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           // 使用 vue-router 路由到指定页面，该方式称之为编程式导航
+
           this.$router.push("/");
         } else {
           this.dialogVisible = true;
@@ -82,13 +83,14 @@ export default {
         }
       });
     },
+    
   },
 };
 </script>
 
 <style lang="less" scoped>
 .login {
-  background-image: url('../../public/img/background.png');
+  background-image: url("../../public/img/background.png");
   height: 100%;
   display: flex;
   justify-content: center;
