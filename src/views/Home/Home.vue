@@ -20,16 +20,7 @@
           <p>上次登陆地点:<span> Place</span></p>
         </div></el-card
       ><el-card style="margin-top: 20px; height: auto">
-        <el-table :data="tableData">
-          <el-table-column
-            show-overflow-tooltip
-            v-for="(val, key) in tableLabel"
-            :key="key"
-            :prop="key"
-            :label="val"
-          >
-          </el-table-column>
-        </el-table>
+        
       </el-card>
     </el-col>
     <el-col
@@ -63,8 +54,7 @@
       </el-card>
       <div class="graph">
         <el-card shadow="hover" style="height: 260px">
-          <echart :chartData="echartData.user" 
-          style="height: 240px"></echart>
+          <echart :chartData="echartData.user" style="height: 240px"></echart>
         </el-card>
         <el-card shadow="hover" style="height: 260px">
           <echart
@@ -85,13 +75,7 @@ export default {
   data() {
     return {
       userImg: require("../../assets/logo.png"),
-      tableData: [],
-      tableLabel: {
-        name: "课程",
-        totalBuy: "今日购买",
-        monthBuy: "本月购买",
-        totalBuy: "总购买",
-      },
+      
       countData: [
         {
           icon: "success",
@@ -136,9 +120,10 @@ export default {
   methods: {
     getTableData() {
       getHome().then((res) => {
-        console.log(res.data.tableData);
-        this.tableData = res.data.tableData;
+        // console.log(res);
 
+
+        console.log(this.tableData)
         this.countData = this.countData.map((item, index) => {
           return { ...item, ...res.data.countData[index] };
         });
