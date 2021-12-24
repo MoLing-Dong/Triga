@@ -19,6 +19,9 @@ export default {
 };
 </script>
 <style lang="less" scoped>
+body{
+    background-color: white;
+}
 .el-header {
   background: #333;
 }
