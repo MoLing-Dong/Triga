@@ -1,5 +1,4 @@
-import { time } from 'echarts'
-
+/* 
 const axios = require('axios')
 
 export const loginCheck = () => {
@@ -12,4 +11,4 @@ export const loginCheck = () => {
       },
     timeout:1500
   })
-}
+} */

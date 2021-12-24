@@ -20,12 +20,12 @@ export default {
     }
     return {
       code: 20000,
-        data: {
-          //订单
+      data: {
+        //订单
         countData: [{
             name: "今日支付订单",
             value: 1234,
-            
+
           },
           {
             name: "今日收藏订单",
@@ -115,7 +115,7 @@ export default {
         orderData: {
           date: ['20191001', '20191002', '20191003', '20191004', '20191005', '20191006', '20191007'],
           data: List
-        },
+          },
         tableData: [{
             name: 'oppo',
             todayBuy: 500,
