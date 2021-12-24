@@ -3,10 +3,13 @@ import App from './App.vue'
 import './registerServiceWorker'
 import router from './router'
 import store from './store'
-import http from 'axios'
+import axios from 'axios'
 // import ElementUI from 'element-ui';
 // import 'element-ui/lib/theme-chalk/index.css';
 import '@/assets/less/reset.less' //全局样式
+import { Message } from "element-ui";
+
+Vue.prototype.$message = Message
 
 
 import {
@@ -78,7 +81,7 @@ Vue.use(Checkbox)
 Vue.use(DatePicker)
 Vue.use(Dialog)
 
-Vue.prototype.$http = http
+Vue.prototype.$axios = axios
 if (process.env.NODE_ENV === 'development') require('@/api/mock')
 
 new Vue({

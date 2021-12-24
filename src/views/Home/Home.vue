@@ -19,8 +19,17 @@
           <p>上次登陆时间:<span> Timer</span></p>
           <p>上次登陆地点:<span> Place</span></p>
         </div></el-card
-      ><el-card style="margin-top: 20px; height: auto">
-        
+      ><el-card style="margin-top: 20px; height: auto"
+        ><el-table :data="tableData">
+          <el-table-column
+            show-overflow-tooltip
+            v-for="(val, key) in tableLabel"
+            :key="key"
+            :prop="key"
+            :label="val"
+          >
+          </el-table-column>
+        </el-table>
       </el-card>
     </el-col>
     <el-col
@@ -75,7 +84,13 @@ export default {
   data() {
     return {
       userImg: require("../../assets/logo.png"),
-      
+      tableData: [],
+      tableLabel: {
+        name: "课程",
+        totalBuy: "今日购买",
+        monthBuy: "本月购买",
+        totalBuy: "总购买",
+      },
       countData: [
         {
           icon: "success",
@@ -121,9 +136,8 @@ export default {
     getTableData() {
       getHome().then((res) => {
         // console.log(res);
-
-
-        console.log(this.tableData)
+        this.tableData = res.data.tableData;
+        console.log(this.tableData);
         this.countData = this.countData.map((item, index) => {
           return { ...item, ...res.data.countData[index] };
         });

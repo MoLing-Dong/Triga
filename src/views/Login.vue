@@ -10,7 +10,7 @@
             <input type="password" placeholder="密码" v-model="form.userpwd" />
             <span class="errTips" v-if="emailError">* 密码填写错误 *</span>
           </div>
-          <button class="bbutton" @click="login">登录</button>
+          <el-button class="bbutton" @click="login">登录</el-button>
         </div>
         <div class="big-contain" v-else>
           <div class="btitle">创建账户</div>
@@ -56,6 +56,14 @@ export default {
     };
   },
   methods: {
+    openVn() {
+      const h = this.$createElement;
+      this.$message({
+        message: h("p", null, [
+          h("span", null, "请完整输入账号密码 "),
+        ]),
+      });
+    },
     changeType() {
       this.isLogin = !this.isLogin;
       this.form.username = "";
@@ -78,6 +86,7 @@ export default {
             switch (res.data) {
               case 0:
                 alert("登陆成功！");
+                this.$router.push("/admin");
                 break;
               case -1:
                 this.emailError = true;
@@ -91,7 +100,7 @@ export default {
             console.log(err);
           });
       } else {
-        alert("填写不能为空！");
+        this.openVn()
       }
     },
     register() {
@@ -101,6 +110,7 @@ export default {
         self.form.useremail != "" &&
         self.form.userpwd != ""
       ) {
+        console.log(0);
         self
           .$axios({
             method: "post",
@@ -116,6 +126,7 @@ export default {
               case 0:
                 alert("注册成功！");
                 this.login();
+                this.$router.push("/admin");
                 break;
               case -1:
                 this.existed = true;
@@ -134,7 +145,6 @@ export default {
 </script>
 
 <style lang="css" scoped>
-
 .login-register {
   width: 100vw;
   height: 100vh;

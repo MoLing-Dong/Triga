@@ -5,7 +5,13 @@ import Login from '../views/Login.vue'
 Vue.use(VueRouter)
 
 const routes = [{
+    // 登录页
     path: '/',
+    name: 'index',
+    component: () => import('@/views/Login')
+  }, {
+    path: '/admin',
+    name: 'main',
     component: Main,
     children: [{
       path: '/',
