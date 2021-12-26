@@ -41,17 +41,6 @@
   </el-menu>
 </template>
 
-<style>
-body {
-  padding: 0;
-  margin: 0;
-}
-.el-menu-vertical-demo:not(.el-menu--collapse) {
-  width: 200px;
-  min-height: 400px;
-}
-</style>
-
 <script>
 export default {
   data() {
@@ -80,7 +69,8 @@ export default {
         },
         {
           label: "其他",
-          icon: "setting",
+          icon: "location",
+          path: "/other",
           children: [
             {
               path: "/page1",
@@ -102,9 +92,16 @@ export default {
     };
   },
   methods: {
+    // handleOpen(key, keyPath) {
+    //   console.log(key, keyPath);
+    // },
+    // handleClose(key, keyPath) {
+    //   console.log(key, keyPath);
+    // },
     clickMenu(item) {
+      //   console.log(item);
       this.$router.push({ name: item.name });
-      this.$store.commit('selectMnu',item)
+      this.$store.commit("selectMenu", item);
     },
   },
   computed: {
@@ -120,7 +117,6 @@ export default {
   },
 };
 </script>
-
 
 <style lang="less" scoped>
 .el-menu {

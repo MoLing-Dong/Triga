@@ -4,23 +4,53 @@
       <div class="big-box" :class="{ active: isLogin }">
         <div class="big-contain" v-if="isLogin">
           <div class="btitle">账户登录</div>
-          <div class="bform">
-            <input type="email" placeholder="邮箱" v-model="form.useremail" />
+          <el-form class="bform" ref="form" :model="form" label-width="10px">
+            <el-form-item label=""
+              ><el-input
+                type="email"
+                v-model="form.useremail"
+                placeholder="邮箱"
+              ></el-input
+            ></el-form-item>
             <span class="errTips" v-if="emailError">* 邮箱填写错误 *</span>
-            <input type="password" placeholder="密码" v-model="form.userpwd" />
-            <span class="errTips" v-if="emailError">* 密码填写错误 *</span>
-          </div>
+            <el-form-item label=""
+              ><el-input
+                type="password"
+                v-model="form.userpwd"
+                placeholder="密码"
+              ></el-input
+            ></el-form-item>
+            <span class="errTips" v-if="passwordError">* 密码填写错误 *</span>
+          </el-form>
           <el-button class="bbutton" @click="login">登录</el-button>
         </div>
         <div class="big-contain" v-else>
           <div class="btitle">创建账户</div>
-          <div class="bform">
-            <input type="text" placeholder="用户名" v-model="form.username" />
+          <el-form class="bform" ref="form" :model="form" label-width="20px"
+            ><el-form-item label="">
+              <el-input
+                type="text"
+                v-model="form.username"
+                placeholder="账号"
+              ></el-input
+            ></el-form-item>
             <span class="errTips" v-if="existed">* 用户名已经存在！ *</span>
-            <input type="email" placeholder="邮箱" v-model="form.useremail" />
-            <input type="password" placeholder="密码" v-model="form.userpwd" />
-          </div>
-          <button class="bbutton" @click="register">注册</button>
+            <el-form-item label=""
+              ><el-input
+                type="email"
+                v-model="form.useremail"
+                placeholder="邮箱"
+              ></el-input
+            ></el-form-item>
+            <el-form-item label=""
+              ><el-input
+                type="password"
+                v-model="form.userpwd"
+                placeholder="密码"
+              ></el-input
+            ></el-form-item>
+          </el-form>
+          <el-button class="bbutton" @click="register">注册</el-button>
         </div>
       </div>
       <div class="small-box" :class="{ active: isLogin }">
@@ -55,13 +85,28 @@ export default {
       },
     };
   },
+  created() {
+    let _this = this;
+    document.onkeydown = function (e) {
+      e = window.event || e;
+      if (
+        _this.$route.path == "/login" &&
+        (e.key == "Enter" || e.key == "enter")
+      ) {
+        //验证在登录界面和按得键是回车键enter
+        if (_this.isLogin == true) {
+          _this.login("loginForm"); //登录函数
+        } else {
+          _this.register("reginsterFrom");
+        }
+      }
+    };
+  },
   methods: {
-    openVn() {
+    openVn(info) {
       const h = this.$createElement;
       this.$message({
-        message: h("p", null, [
-          h("span", null, "请完整输入账号密码 "),
-        ]),
+        message: h("p", null, [h("span", null, `${info}`)]),
       });
     },
     changeType() {
@@ -70,13 +115,18 @@ export default {
       this.form.useremail = "";
       this.form.userpwd = "";
     },
+    checkMail(Email) {
+      const reg = /^\w+@\w+(\.\w+)+$/;
+      const result = reg.test(Email);
+      alert(result);
+    },
     login() {
       const self = this;
       if (self.form.useremail != "" && self.form.userpwd != "") {
         self
           .$axios({
             method: "post",
-            url: "http://127.0.0.1:10520/api/user/login",
+            url: "http://127.0.0.1:10520/login",
             data: {
               email: self.form.useremail,
               password: self.form.userpwd,
@@ -90,9 +140,11 @@ export default {
                 break;
               case -1:
                 this.emailError = true;
+                this.openVn("邮箱错误");
                 break;
               case 1:
                 this.passwordError = true;
+                this.openVn("密码错误");
                 break;
             }
           })
@@ -100,9 +152,10 @@ export default {
             console.log(err);
           });
       } else {
-        this.openVn()
+        this.openVn("请完整输入账号密码 ");
       }
     },
+
     register() {
       const self = this;
       if (
@@ -114,7 +167,7 @@ export default {
         self
           .$axios({
             method: "post",
-            url: "http://127.0.0.1:10520/api/user/add",
+            url: "http://127.0.0.1:10520/register",
             data: {
               username: self.form.username,
               email: self.form.useremail,
@@ -137,7 +190,7 @@ export default {
             console.log(err);
           });
       } else {
-        alert("填写不能为空！");
+        this.openVn("请完整输入");
       }
     },
   },
@@ -152,7 +205,7 @@ export default {
   background-image: url("../../public/img/background.png");
 }
 .contain {
-  width: 60%;
+  width: 45%;
   height: 60%;
   position: relative;
   top: 50%;
@@ -185,8 +238,8 @@ export default {
   color: rgb(57, 167, 176);
 }
 .bform {
-  width: 100%;
-  height: 40%;
+  width: auto;
+  height: 60%;
   padding: 2em 0;
   display: flex;
   flex-direction: column;
@@ -201,15 +254,7 @@ export default {
   font-size: 0.7em;
   margin-left: 1em;
 }
-.bform input {
-  width: 50%;
-  height: 30px;
-  border: none;
-  outline: none;
-  border-radius: 10px;
-  padding-left: 2em;
-  background-color: #f0f0f0;
-}
+
 .bbutton {
   width: 20%;
   height: 40px;

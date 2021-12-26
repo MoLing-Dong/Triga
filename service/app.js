@@ -2,9 +2,11 @@ const bodyParser = require('body-parser');
 const express = require('express');
 const cors = require('cors')
 const app = express();
-
 const userApi = require('./api/userApi.js');
+const router = require('./router/router')
 
+
+const port= 10520
 // 解析 application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
 // 解析 application/json
@@ -22,7 +24,7 @@ app.all('*', function (req, res, next) {
 	next();
 });
 
-app.use("/api/user",userApi);
+app.use('/', router);
 
-app.listen(10520);
+app.listen(port);
 console.log("success");

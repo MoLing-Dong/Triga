@@ -8,8 +8,8 @@
         @click="handleMenu"
       ></el-button>
       <el-breadcrumb>
-        <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-        
+        <el-breadcrumb-item :to="{ path: '/admin' }">首页</el-breadcrumb-item>
+        <el-breadcrumb-item :to="current.path" v-if="current">{{current.label}}</el-breadcrumb-item>
       </el-breadcrumb>
     </div>
     <div class="r-content">
@@ -27,8 +27,9 @@
 </template>
 
 
-
 <script>
+import { mapState } from "vuex";
+
 export default {
   data() {
     return {
@@ -36,10 +37,15 @@ export default {
       userImg: require("../assets/logo.png"),
     };
   },
-   methods: {
+  methods: {
     handleMenu() {
       this.$store.commit("collapseMenu");
     },
+  },
+  computed: {
+    ...mapState({
+      current: (state) => state.tab.currentMenu,
+    }),
   },
 };
 </script><style lang="less" scoped>
@@ -77,5 +83,9 @@ header {
     .el-breadcrumb__inner {
       color: white;
     }
+    &:hover{
+        color: red;
+    }
   }
 }
+</style>

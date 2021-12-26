@@ -135,9 +135,8 @@ export default {
   methods: {
     getTableData() {
       getHome().then((res) => {
-        // console.log(res);
         this.tableData = res.data.tableData;
-        console.log(this.tableData);
+        // console.log(this.tableData);
         this.countData = this.countData.map((item, index) => {
           return { ...item, ...res.data.countData[index] };
         });

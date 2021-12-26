@@ -2,16 +2,20 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Main from '../views/Main.vue'
 import Login from '../views/Login.vue'
+const originPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push(location) {
+  return originPush.call(this, location).catch(err => err)
+}
 Vue.use(VueRouter)
 
 const routes = [{
     // 登录页
     path: '/',
     name: 'index',
-    component: () => import('@/views/Login')
-  }, {
+    component: Login
+  },
+  {
     path: '/admin',
-    name: 'main',
     component: Main,
     children: [{
       path: '/',
@@ -28,6 +32,10 @@ const routes = [{
     }, {
       path: '/page1',
       name: 'page1',
+      component: () => import('@/views/Other/other')
+    }, , {
+      path: '/page2',
+      name: 'page2',
       component: () => import('@/views/Other/other')
     }]
   },
