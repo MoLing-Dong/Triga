@@ -74,7 +74,7 @@ export default {
   name: "login-register",
   data() {
     return {
-      isLogin: false,
+      isLogin: true,
       emailError: false,
       passwordError: false,
       existed: false,
