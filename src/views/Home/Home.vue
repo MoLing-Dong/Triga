@@ -22,7 +22,6 @@
       ><el-card style="margin-top: 20px; height: auto"
         ><el-table :data="tableData">
           <el-table-column
-            show-overflow-tooltip
             v-for="(val, key) in tableLabel"
             :key="key"
             :prop="key"
@@ -31,6 +30,7 @@
           </el-table-column>
         </el-table>
       </el-card>
+      <el-card style="margin-top: 20px; height: auto"> <word></word> </el-card>
     </el-col>
     <el-col
       :xs="{ span: 24 }"
@@ -79,8 +79,9 @@
 <script>
 import { getHome } from "../../api/data";
 import Echart from "@/components/ECharts.vue";
+import Word from "@/views/Tools/WordYun.vue";
 export default {
-  components: { Echart },
+  components: { Echart, Word },
   data() {
     return {
       userImg: require("../../assets/logo.png"),
