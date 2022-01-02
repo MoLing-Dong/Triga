@@ -70,9 +70,10 @@
 .home .graph {
   margin-top: 20px;
   display: flex;
-  justify-content: space-between;
   flex-wrap: wrap;
 }
 .home .graph .el-card {
+  margin-top: 0.2rem;
   width: 25rem;
+  margin-right: 0.5rem;
 }

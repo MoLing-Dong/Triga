@@ -90,7 +90,7 @@ export default {
     document.onkeydown = function (e) {
       e = window.event || e;
       if (
-        _this.$route.path == "/login" &&
+        _this.$route.path == ("/login" && "/" )&&
         (e.key == "Enter" || e.key == "enter")
       ) {
         //验证在登录界面和按得键是回车键enter

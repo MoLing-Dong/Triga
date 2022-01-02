@@ -58,17 +58,17 @@
         </el-card>
       </div>
       <el-card shadow="hover" style="height: 280px">
-        <!-- <div style='height: 280px' ref='echart'></div> -->
-        <echart :chartData="echartData.order" style="height: 280px"></echart>
+        <!-- <div style='height: 17.5rem' ref='echart'></div> -->
+        <echart :chartData="echartData.order" style="height: 17.5rem"></echart>
       </el-card>
       <div class="graph">
-        <el-card shadow="hover" style="height: 260px">
-          <echart :chartData="echartData.user" style="height: 240px"></echart>
+        <el-card shadow="hover" style="height: 16.25rem">
+          <echart :chartData="echartData.user" style="height: 15rem"></echart>
         </el-card>
-        <el-card shadow="hover" style="height: 260px">
+        <el-card shadow="hover" style="height: 16.25rem">
           <echart
             :chartData="echartData.video"
-            style="height: 240px"
+            style="height: 15rem"
             :isAxisChart="false"
           ></echart>
         </el-card>
@@ -137,7 +137,7 @@ export default {
     getTableData() {
       getHome().then((res) => {
         this.tableData = res.data.tableData;
-        // console.log(this.tableData);
+        console.log(res.data.tableData);
         this.countData = this.countData.map((item, index) => {
           return { ...item, ...res.data.countData[index] };
         });
@@ -180,4 +180,12 @@ export default {
 </script>
 <style lang='less' scoped>
 @import "~@/assets/less/home";
+</style>
+<style lang="less" scoped>
+.graph {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 </style>
