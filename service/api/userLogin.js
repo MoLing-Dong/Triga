@@ -3,8 +3,6 @@
  * @description 用户登录校验
  */
 const models = require('../db/db');
-const express = require('express');
-const router = express.Router();
 const mysql = require('mysql');
 const $sql = require('../db/sqlMap');
 

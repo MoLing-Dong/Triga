@@ -90,7 +90,7 @@ export default {
     document.onkeydown = function (e) {
       e = window.event || e;
       if (
-        _this.$route.path == ("/login" && "/" )&&
+        _this.$route.path == ("/login" && "/") &&
         (e.key == "Enter" || e.key == "enter")
       ) {
         //验证在登录界面和按得键是回车键enter
@@ -115,10 +115,9 @@ export default {
       this.form.useremail = "";
       this.form.userpwd = "";
     },
-    checkMail(Email) {
-      const reg = /^\w+@\w+(\.\w+)+$/;
-      const result = reg.test(Email);
-      alert(result);
+    checkMail(email) {
+      const emreg = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+      return emreg.test(email);
     },
     login() {
       const self = this;
@@ -159,8 +158,8 @@ export default {
     register() {
       const self = this;
       if (
+        self.checkMail(self.form.useremail) &&
         self.form.username != "" &&
-        self.form.useremail != "" &&
         self.form.userpwd != ""
       ) {
         console.log(0);
@@ -189,8 +188,21 @@ export default {
           .catch((err) => {
             console.log(err);
           });
+      } else if (self.checkMail(self.form.useremail) == false) {
+        /**
+         * @Created by Mol on 2022/01/04
+         * @description 邮箱格式错误执行
+         */
+        console.log(self.checkMail(`${self.form.useremail}`));
+        console.log(self.form.useremail);
+        this.openVn("请输入正确的邮箱地址");
       } else {
-        this.openVn("请完整输入");
+        /**
+         * @Created by Mol on 2022/01/04
+         * @description 无输入且邮箱输入错误
+         */
+
+        this.openVn("所有内容");
       }
     },
   },
