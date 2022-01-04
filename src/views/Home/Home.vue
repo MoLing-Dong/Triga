@@ -20,17 +20,9 @@
           <p>上次登陆地点:<span> Place</span></p>
         </div></el-card
       ><el-card style="margin-top: 20px; height: auto"
-        ><el-table :data="tableData">
-          <el-table-column
-            v-for="(val, key) in tableLabel"
-            :key="key"
-            :prop="key"
-            :label="val"
-          >
-          </el-table-column>
-        </el-table>
+        >
       </el-card>
-      <el-card style="margin-top: 20px; height: auto"> <word></word> </el-card>
+      <el-card style="margin-top: 20px"> <word></word> </el-card>
     </el-col>
     <el-col
       :xs="{ span: 24 }"
@@ -80,18 +72,13 @@
 import { getHome } from "../../api/data";
 import Echart from "@/components/ECharts.vue";
 import Word from "@/views/Tools/WordYun.vue";
+
 export default {
-  components: { Echart, Word },
+  components: { Echart, Word},
   data() {
     return {
       userImg: require("../../assets/logo.png"),
-      tableData: [],
-      tableLabel: {
-        name: "课程",
-        totalBuy: "今日购买",
-        monthBuy: "本月购买",
-        totalBuy: "总购买",
-      },
+    
       countData: [
         {
           icon: "success",
@@ -136,8 +123,6 @@ export default {
   methods: {
     getTableData() {
       getHome().then((res) => {
-        this.tableData = res.data.tableData;
-        console.log(res.data.tableData);
         this.countData = this.countData.map((item, index) => {
           return { ...item, ...res.data.countData[index] };
         });
@@ -187,5 +172,4 @@ export default {
   align-items: center;
   justify-content: center;
 }
-
 </style>
