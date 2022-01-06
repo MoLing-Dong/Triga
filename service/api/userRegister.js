@@ -11,20 +11,20 @@ conn.connect();
 
 const userRegister = (req, res) => {
   const params = req.body;
-  const sel_sql = $sql.user.select + " where username = '" + params.username + "'";
+  const sel_sql = $sql.user.select + " where userName = '" + params.userName + "'";
   const add_sql = $sql.user.add;
   console.log(sel_sql);
 
-  conn.query(sel_sql, params.username, (error, results) => {
+  conn.query(sel_sql, params.userName, (error, results) => {
     if (error) {
       console.log(err);
     }
-    if (results.length != 0 && params.username == results[0].username) {
+    if (results.length != 0 && params.userName == results[0].userName) {
       res.send("-1"); // -1 表示用户名已经存在
-    } else if (results.length != 0 && params.useremail == results[0].useremail) {
+    } else if (results.length != 0 && params.userEmail == results[0].userEmail) {
       res.send("-2") //表示邮箱存在
     } else {
-      conn.query(add_sql, [params.username, params.email, params.password], (err, rst) => {
+      conn.query(add_sql, [params.userName, params.email, params.password], (err, rst) => {
         if (err) {
           console.log(err);
         } else {

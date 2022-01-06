@@ -8,7 +8,7 @@
             <el-form-item label=""
               ><el-input
                 type="email"
-                v-model="form.useremail"
+                v-model="form.userEmail"
                 placeholder="邮箱"
               ></el-input
             ></el-form-item>
@@ -38,7 +38,7 @@
             <el-form-item label=""
               ><el-input
                 type="email"
-                v-model="form.useremail"
+                v-model="form.userEmail"
                 placeholder="邮箱"
               ></el-input
             ></el-form-item>
@@ -80,7 +80,7 @@ export default {
       existed: false,
       form: {
         username: "",
-        useremail: "",
+        userEmail: "",
         userpwd: "",
       },
     };
@@ -112,7 +112,7 @@ export default {
     changeType() {
       this.isLogin = !this.isLogin;
       this.form.username = "";
-      this.form.useremail = "";
+      this.form.userEmail = "";
       this.form.userpwd = "";
     },
     checkMail(email) {
@@ -121,13 +121,13 @@ export default {
     },
     login() {
       const self = this;
-      if (self.form.useremail != "" && self.form.userpwd != "") {
+      if (self.form.userEmail != "" && self.form.userpwd != "") {
         self
           .$axios({
             method: "post",
             url: "http://127.0.0.1:10520/login",
             data: {
-              email: self.form.useremail,
+              email: self.form.userEmail,
               password: self.form.userpwd,
             },
           })
@@ -158,7 +158,7 @@ export default {
     register() {
       const self = this;
       if (
-        self.checkMail(self.form.useremail) &&
+        self.checkMail(self.form.userEmail) &&
         self.form.username != "" &&
         self.form.userpwd != ""
       ) {
@@ -168,13 +168,18 @@ export default {
             method: "post",
             url: "http://127.0.0.1:10520/register",
             data: {
-              username: self.form.username,
-              email: self.form.useremail,
+              userName: self.form.username,
+              email: self.form.userEmail,
               password: self.form.userpwd,
             },
           })
           .then((res) => {
             switch (res.data) {
+              /**
+               * @Created by Mol on 2022/01/06
+               * @description 前端暂时没错，检查后端数据
+               */
+
               case 0:
                 alert("注册成功！");
                 this.login();
@@ -188,13 +193,13 @@ export default {
           .catch((err) => {
             console.log(err);
           });
-      } else if (self.checkMail(self.form.useremail) == false) {
+      } else if (self.checkMail(self.form.userEmail) == false) {
         /**
          * @Created by Mol on 2022/01/04
          * @description 邮箱格式错误执行
          */
-        console.log(self.checkMail(`${self.form.useremail}`));
-        console.log(self.form.useremail);
+        // console.log(self.checkMail(`${self.form.userEmail}`));
+        // console.log(self.form.userEmail);
         this.openVn("请输入正确的邮箱地址");
       } else {
         /**
@@ -266,7 +271,10 @@ export default {
   font-size: 0.7em;
   margin-left: 1em;
 }
-
+.el-form-item {
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
 .bbutton {
   width: 20%;
   height: 40px;
