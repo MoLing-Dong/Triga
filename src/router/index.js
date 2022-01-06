@@ -18,26 +18,41 @@ const routes = [{
     path: '/admin',
     component: Main,
     children: [{
-      path: '/',
-      name: 'home',
-      component: () => import('@/views/Home/Home')
-    }, {
-      path: '/mall',
-      name: 'mall',
-      component: () => import('@/views/Mall/Mall')
-    }, {
-      path: '/user',
-      name: 'user',
-      component: () => import('@/views/User/User')
-    }, {
-      path: '/page1',
-      name: 'page1',
-      component: () => import('@/views/Other/other')
-    }, , {
-      path: '/page2',
-      name: 'page2',
-      component: () => import('@/views/Other/other')
-    }]
+        path: '/',
+        name: 'home',
+        component: () => import('@/views/Home/Home')
+      }, {
+        path: '/mall',
+        name: 'mall',
+        component: () => import('@/views/Mall/Mall')
+      }, {
+        path: '/user',
+        name: 'user',
+        component: () => import('@/views/User/User')
+      },
+      {
+        path: '/',
+        name: 'dataAnalysis',
+        children: [
+
+
+        ]
+      },
+      {
+        path: '/wordYun',
+        name: "wordYun",
+        component: () => import('@/views/dataAnalysis/wordYun.vue')
+      },
+      {
+        path: '/page1',
+        name: 'page1',
+        component: () => import('@/views/Other/other')
+      }, , {
+        path: '/page2',
+        name: 'page2',
+        component: () => import('@/views/Other/other')
+      }
+    ]
   },
   {
     // 登录页

@@ -68,6 +68,21 @@ export default {
           url: "UserManage/UserManage",
         },
         {
+          label: "数据分析",
+          icon: "location",
+          path: "/dataAnalysis",
+          children: [
+            {
+              path: "/wordYun",
+              name: "wordYun",
+              label: "词云分析",
+              icon: "setting",
+              url: "dataAnalysis/wordYun",
+            },
+            
+          ],
+        },
+        {
           label: "其他",
           icon: "location",
           path: "/other",

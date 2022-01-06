@@ -19,9 +19,7 @@
           <p>上次登陆时间:<span> Timer</span></p>
           <p>上次登陆地点:<span> Place</span></p>
         </div></el-card
-      ><el-card style="margin-top: 20px; height: auto"
-        >
-      </el-card>
+      >
       <el-card style="margin-top: 20px"> <word></word> </el-card>
     </el-col>
     <el-col
@@ -71,10 +69,10 @@
 <script>
 import { getHome } from "../../api/data";
 import Echart from "@/components/ECharts.vue";
-import Word from "@/views/Tools/WordYun.vue";
+// import Word from "@/views/Tools/newWordYun.vue";
 
 export default {
-  components: { Echart, Word},
+  components: { Echart},
   data() {
     return {
       userImg: require("../../assets/logo.png"),
