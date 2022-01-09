@@ -9,7 +9,10 @@ const $sql = require('../db/sqlMap');
 const conn = mysql.createConnection(models.mysql);
 conn.connect();
 
-const userRegister = (req, res) => {
+
+
+module.exports = {
+userRegister(req, res){
   const params = req.body;
   const sel_sql = $sql.user.select + " where userName = '" + params.userName + "'";
   const add_sql = $sql.user.add;
@@ -35,7 +38,4 @@ const userRegister = (req, res) => {
     }
   });
 }
-
-module.exports = {
-  userRegister: userRegister
 };
