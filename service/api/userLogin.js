@@ -9,7 +9,6 @@ const $sql = require('../db/sqlMap');
 const conn = mysql.createConnection(models.mysql);
 conn.connect();
 
-
 module.exports = {
   userLogin(req, res) {
     console.log(res.body)

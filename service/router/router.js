@@ -2,11 +2,11 @@ const express = require('express');
 const router = express.Router();
 
 const {
-    userLogin
+  userLogin
 } = require('../api/userLogin');
 
 const {
-    userRegister
+  userRegister
 } = require('../api/userRegister');
 
 router.post('/login', userLogin);
