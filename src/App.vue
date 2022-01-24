@@ -5,12 +5,12 @@
 </template>
 <script>
 export default {
-  data() {
+  data () {
     return {
-      radio: "1",
-    };
-  },
-};
+      radio: '1'
+    }
+  }
+}
 </script>
 <style lang="less">
 #app {

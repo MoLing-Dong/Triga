@@ -6,11 +6,10 @@ import store from './store'
 import axios from 'axios'
 // import ElementUI from 'element-ui';
 // import 'element-ui/lib/theme-chalk/index.css';
-import '@/assets/less/reset.less' //全局样式
-import { Message } from "element-ui";
-
-Vue.prototype.$message = Message
-
+import '@/assets/less/reset.less' // 全局样式
+import {
+  Message
+} from 'element-ui'
 
 import {
   Button,
@@ -43,7 +42,9 @@ import {
   Checkbox,
   DatePicker,
   Dialog
-} from 'element-ui';
+} from 'element-ui'
+
+Vue.prototype.$message = Message
 
 Vue.config.productionTip = false
 // Vue.use(ElementUI);
@@ -51,8 +52,8 @@ Vue.config.productionTip = false
 // Vue.component(Button.name, Button);
 
 Vue.use(Button)
-Vue.component(Select.name, Select);
-Vue.component(Radio.name, Radio);
+Vue.component(Select.name, Select)
+Vue.component(Radio.name, Radio)
 Vue.use(Container)
 Vue.use(Aside)
 Vue.use(Header)
@@ -87,5 +88,7 @@ if (process.env.NODE_ENV === 'development') require('@/api/mock')
 new Vue({
   router,
   store,
+
+
   render: h => h(App)
 }).$mount('#app')

@@ -26,28 +26,27 @@
   </header>
 </template>
 
-
 <script>
-import { mapState } from "vuex";
+import { mapState } from 'vuex'
 
 export default {
-  data() {
+  data () {
     return {
       // userImg:require("../assets/images/user.png")
-      userImg: require("../assets/logo.png"),
-    };
+      userImg: require('../assets/logo.png')
+    }
   },
   methods: {
-    handleMenu() {
-      this.$store.commit("collapseMenu");
-    },
+    handleMenu () {
+      this.$store.commit('collapseMenu')
+    }
   },
   computed: {
     ...mapState({
-      current: (state) => state.tab.currentMenu,
-    }),
-  },
-};
+      current: (state) => state.tab.currentMenu
+    })
+  }
+}
 </script><style lang="less" scoped>
 header {
   display: flex;

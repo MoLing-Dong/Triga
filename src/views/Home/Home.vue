@@ -72,11 +72,12 @@ import Echart from "@/components/ECharts.vue";
 // import Word from "@/views/Tools/newWordYun.vue";
 
 export default {
-  components: { Echart},
+  name: "Home",
+  components: { Echart },
   data() {
     return {
       userImg: require("../../assets/logo.png"),
-    
+
       countData: [
         {
           icon: "success",

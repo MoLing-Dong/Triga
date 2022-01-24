@@ -10,10 +10,10 @@ export default {
     }]
   },
   mutations: {
-    collapseMenu(state) {
+    collapseMenu (state) {
       state.isCollapse = !state.isCollapse
     },
-    selectMenu(state, val) {
+    selectMenu (state, val) {
       // val.name === 'home' ? (state.currentMenu = null) : state.currentMenu = val
 
       if (val.name == 'home') {
@@ -21,15 +21,14 @@ export default {
       } else {
         state.currentMenu = val
         // 新增tabsList
-        let result = state.tabsList.findIndex(item => item.name == val.name)
+        const result = state.tabsList.findIndex(item => item.name == val.name)
         result === -1 ? state.tabsList.push(val) : ''
       }
     },
-    closeTag(state, val) {
-      let result = state.tabsList.findIndex(item => item.name === val.name)
+    closeTag (state, val) {
+      const result = state.tabsList.findIndex(item => item.name === val.name)
       state.tabsList.splice(result, 1)
     }
-
 
   }
 }

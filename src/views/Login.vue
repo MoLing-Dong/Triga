@@ -71,107 +71,107 @@
 
 <script>
 export default {
-  name: "login-register",
-  data() {
+  name: 'login-register',
+  data () {
     return {
       isLogin: true,
       emailError: false,
       passwordError: false,
       existed: false,
       form: {
-        username: "",
-        userEmail: "",
-        userpwd: "",
-      },
-    };
+        username: '',
+        userEmail: '',
+        userpwd: ''
+      }
+    }
   },
-  created() {
-    let _this = this;
+  created () {
+    const _this = this
     document.onkeydown = function (e) {
-      e = window.event || e;
+      e = window.event || e
       if (
-        _this.$route.path == ("/login" && "/") &&
-        (e.key == "Enter" || e.key == "enter")
+        _this.$route.path == ('/login' && '/') &&
+        (e.key == 'Enter' || e.key == 'enter')
       ) {
-        //验证在登录界面和按得键是回车键enter
+        // 验证在登录界面和按得键是回车键enter
         if (_this.isLogin == true) {
-          _this.login("loginForm"); //登录函数
+          _this.login('loginForm') // 登录函数
         } else {
-          _this.register("reginsterFrom");
+          _this.register('reginsterFrom')
         }
       }
-    };
+    }
   },
   methods: {
-    openVn(info) {
-      const h = this.$createElement;
+    openVn (info) {
+      const h = this.$createElement
       this.$message({
-        message: h("p", null, [h("span", null, `${info}`)]),
-      });
+        message: h('p', null, [h('span', null, `${info}`)])
+      })
     },
-    changeType() {
-      this.isLogin = !this.isLogin;
-      this.form.username = "";
-      this.form.userEmail = "";
-      this.form.userpwd = "";
+    changeType () {
+      this.isLogin = !this.isLogin
+      this.form.username = ''
+      this.form.userEmail = ''
+      this.form.userpwd = ''
     },
-    checkMail(email) {
-      const emreg = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
-      return emreg.test(email);
+    checkMail (email) {
+      const emreg = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
+      return emreg.test(email)
     },
-    login() {
-      const self = this;
-      if (self.form.userEmail != "" && self.form.userpwd != "") {
+    login () {
+      const self = this
+      if (self.form.userEmail != '' && self.form.userpwd != '') {
         self
           .$axios({
-            method: "post",
-            url: "http://127.0.0.1:10520/login",
+            method: 'post',
+            url: 'http://127.0.0.1:10520/login',
             data: {
               email: self.form.userEmail,
-              password: self.form.userpwd,
-            },
+              password: self.form.userpwd
+            }
           })
           .then((res) => {
             switch (res.data) {
               case 0:
-                alert("登陆成功！");
-                this.$router.push("/admin");
-                break;
+                alert('登陆成功！')
+                this.$router.push('/admin')
+                break
               case -1:
-                this.emailError = true;
-                this.openVn("邮箱错误");
-                break;
+                this.emailError = true
+                this.openVn('邮箱错误')
+                break
               case 1:
-                this.passwordError = true;
-                this.openVn("密码错误");
-                break;
+                this.passwordError = true
+                this.openVn('密码错误')
+                break
             }
           })
           .catch((err) => {
-            console.log(err);
-          });
+            console.log(err)
+          })
       } else {
-        this.openVn("请完整输入账号密码 ");
+        this.openVn('请完整输入账号密码 ')
       }
     },
 
-    register() {
-      const self = this;
+    register () {
+      const self = this
       if (
         self.checkMail(self.form.userEmail) &&
-        self.form.username != "" &&
-        self.form.userpwd != ""
+        self.form.username != '' &&
+        self.form.userpwd != ''
       ) {
-        console.log(0);
+        console.log(0)
         self
           .$axios({
-            method: "post",
-            url: "http://127.0.0.1:10520/register",
+            method: 'post',
+            url: 'http://127.0.0.1:10520/register',
             data: {
               userName: self.form.username,
               email: self.form.userEmail,
-              password: self.form.userpwd,
-            },
+              password: self.form.userpwd
+            }
           })
           .then((res) => {
             switch (res.data) {
@@ -181,18 +181,18 @@ export default {
                */
 
               case 0:
-                alert("注册成功！");
-                this.login();
-                this.$router.push("/admin");
-                break;
+                alert('注册成功！')
+                this.login()
+                this.$router.push('/admin')
+                break
               case -1:
-                this.existed = true;
-                break;
+                this.existed = true
+                break
             }
           })
           .catch((err) => {
-            console.log(err);
-          });
+            console.log(err)
+          })
       } else if (self.checkMail(self.form.userEmail) == false) {
         /**
          * @Created by Mol on 2022/01/04
@@ -200,18 +200,18 @@ export default {
          */
         // console.log(self.checkMail(`${self.form.userEmail}`));
         // console.log(self.form.userEmail);
-        this.openVn("请输入正确的邮箱地址");
+        this.openVn('请输入正确的邮箱地址')
       } else {
         /**
          * @Created by Mol on 2022/01/04
          * @description 无输入且邮箱输入错误
          */
 
-        this.openVn("所有内容");
+        this.openVn('所有内容')
       }
-    },
-  },
-};
+    }
+  }
+}
 </script>
 
 <style lang="css" scoped>

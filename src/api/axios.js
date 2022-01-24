@@ -2,14 +2,15 @@
 
 import axios from 'axios'
 import config from '../config/index'
-// 设置配置 根据开发 和 生产环境不一样 
+// 设置配置 根据开发 和 生产环境不一样
 const baseUrl = process.env.NODE_ENV === 'development' ? config.baseUrl.dev : config.baseUrl.pro
 
 class HttpRequst {
-  constructor(baseUrl) {
+  constructor (baseUrl) {
     this.baseUrl = baseUrl
   }
-  getInsideConfig() {
+
+  getInsideConfig () {
     const config = {
       baseURL: this.baseUrl,
       header: {
@@ -18,30 +19,32 @@ class HttpRequst {
     }
     return config
   }
-  interceptors(instance) {
+
+  interceptors (instance) {
     instance.interceptors.request.use(function (config) {
       // 在发送请求之前做些什么
-      console.log('拦截处理请求');
-      return config;
+      console.log('拦截处理请求')
+      return config
     }, function (error) {
       // 对请求错误做些什么
-      return Promise.reject(error);
-    });
+      return Promise.reject(error)
+    })
 
     instance.interceptors.response.use(function (response) {
-      console.log('处理相应');
+      console.log('处理相应')
       // 对响应数据做点什么
-      return response.data;
+      return response.data
     }, function (error) {
-      console.log(error);
+      console.log(error)
       // 对响应错误做点什么
-      return Promise.reject(error);
-    });
+      return Promise.reject(error)
+    })
   }
+
   // {
   //   baseUrl:'/api-'
   // }
-  request(options) {
+  request (options) {
     // 请求
     // /api/getList  /api/getHome
     const instanse = axios.create()
@@ -56,4 +59,4 @@ class HttpRequst {
   }
 }
 
-export default new HttpRequst(baseUrl) 
+export default new HttpRequst(baseUrl)

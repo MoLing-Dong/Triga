@@ -43,68 +43,68 @@
 
 <script>
 export default {
-  data() {
+  data () {
     return {
       menu: [
         {
-          path: "/",
-          name: "home",
-          label: "首页",
-          icon: "s-home",
-          url: "Home/Home",
+          path: '/',
+          name: 'home',
+          label: '首页',
+          icon: 's-home',
+          url: 'Home/Home'
         },
         {
-          path: "/mall",
-          name: "mall",
-          label: "商品管理",
-          icon: "video-play",
-          url: "MallManage/MallManage",
+          path: '/mall',
+          name: 'mall',
+          label: '商品管理',
+          icon: 'video-play',
+          url: 'MallManage/MallManage'
         },
         {
-          path: "/user",
-          name: "user",
-          label: "用户管理",
-          icon: "user",
-          url: "UserManage/UserManage",
+          path: '/user',
+          name: 'user',
+          label: '用户管理',
+          icon: 'user',
+          url: 'UserManage/UserManage'
         },
         {
-          label: "数据分析",
-          icon: "location",
-          path: "/dataAnalysis",
+          label: '数据分析',
+          icon: 'location',
+          path: '/dataAnalysis',
           children: [
             {
-              path: "/wordYun",
-              name: "wordYun",
-              label: "词云分析",
-              icon: "setting",
-              url: "dataAnalysis/wordYun",
-            },
-            
-          ],
+              path: '/wordYun',
+              name: 'wordYun',
+              label: '词云分析',
+              icon: 'setting',
+              url: 'dataAnalysis/wordYun'
+            }
+
+          ]
         },
         {
-          label: "其他",
-          icon: "location",
-          path: "/other",
+          label: '其他',
+          icon: 'location',
+          path: '/other',
           children: [
             {
-              path: "/page1",
-              name: "page1",
-              label: "页面1",
-              icon: "setting",
-              url: "Other/PageOne",
+              path: '/page1',
+              name: 'page1',
+              label: '页面1',
+              icon: 'setting',
+              url: 'Other/PageOne'
             },
             {
-              path: "/page2",
-              name: "page2",
-              label: "页面2",
-              icon: "setting",
-              url: "Other/PageTwo",
-            },
-          ],
-        },
-      ],
-    };
+              path: '/page2',
+              name: 'page2',
+              label: '页面2',
+              icon: 'setting',
+              url: 'Other/PageTwo'
+            }
+          ]
+        }
+      ]
+    }
   },
   methods: {
     // handleOpen(key, keyPath) {
@@ -113,24 +113,24 @@ export default {
     // handleClose(key, keyPath) {
     //   console.log(key, keyPath);
     // },
-    clickMenu(item) {
+    clickMenu (item) {
       //   console.log(item);
-      this.$router.push({ name: item.name });
-      this.$store.commit("selectMenu", item);
-    },
+      this.$router.push({ name: item.name })
+      this.$store.commit('selectMenu', item)
+    }
   },
   computed: {
-    noChildren() {
-      return this.menu.filter((item) => !item.children);
+    noChildren () {
+      return this.menu.filter((item) => !item.children)
     },
-    hasChildren() {
-      return this.menu.filter((item) => item.children);
+    hasChildren () {
+      return this.menu.filter((item) => item.children)
     },
-    isCollapse() {
-      return this.$store.state.tab.isCollapse;
-    },
-  },
-};
+    isCollapse () {
+      return this.$store.state.tab.isCollapse
+    }
+  }
+}
 </script>
 
 <style lang="less" scoped>

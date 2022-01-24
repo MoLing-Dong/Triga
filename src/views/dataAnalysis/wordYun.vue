@@ -3,17 +3,17 @@
 </template>
 
 <script>
-import Word from "@/views/Tools/newWordYun.vue";
+import Word from '@/views/Tools/newWordYun.vue'
 
 export default {
-  name: "",
-  data() {
-    return {};
+  name: '',
+  data () {
+    return {}
   },
   components: { Word },
 
-  methods: {},
-};
+  methods: {}
+}
 </script>
 
 <style  scoped>
