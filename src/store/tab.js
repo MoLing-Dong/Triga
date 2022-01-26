@@ -16,12 +16,13 @@ export default {
     selectMenu (state, val) {
       // val.name === 'home' ? (state.currentMenu = null) : state.currentMenu = val
 
-      if (val.name == 'home') {
+      if (val.name === 'home') {
         state.currentMenu = null
       } else {
         state.currentMenu = val
         // 新增tabsList
-        const result = state.tabsList.findIndex(item => item.name == val.name)
+        const result = state.tabsList.findIndex(item => item.name === val.name)
+        // eslint-disable-next-line no-unused-expressions
         result === -1 ? state.tabsList.push(val) : ''
       }
     },

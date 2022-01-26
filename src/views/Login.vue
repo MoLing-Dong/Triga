@@ -90,11 +90,11 @@ export default {
     document.onkeydown = function (e) {
       e = window.event || e
       if (
-        _this.$route.path == ('/login' && '/') &&
-        (e.key == 'Enter' || e.key == 'enter')
+        _this.$route.path === ('/login' && '/') &&
+        (e.key === 'Enter' || e.key === 'enter')
       ) {
         // 验证在登录界面和按得键是回车键enter
-        if (_this.isLogin == true) {
+        if (_this.isLogin === true) {
           _this.login('loginForm') // 登录函数
         } else {
           _this.register('reginsterFrom')
@@ -121,7 +121,7 @@ export default {
     },
     login () {
       const self = this
-      if (self.form.userEmail != '' && self.form.userpwd != '') {
+      if (self.form.userEmail !== '' && self.form.userpwd !== '') {
         self
           .$axios({
             method: 'post',
@@ -159,8 +159,8 @@ export default {
       const self = this
       if (
         self.checkMail(self.form.userEmail) &&
-        self.form.username != '' &&
-        self.form.userpwd != ''
+        self.form.username !== '' &&
+        self.form.userpwd !== ''
       ) {
         console.log(0)
         self
@@ -193,7 +193,7 @@ export default {
           .catch((err) => {
             console.log(err)
           })
-      } else if (self.checkMail(self.form.userEmail) == false) {
+      } else if (self.checkMail(self.form.userEmail) === false) {
         /**
          * @Created by Mol on 2022/01/04
          * @description 邮箱格式错误执行

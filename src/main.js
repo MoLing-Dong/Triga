@@ -7,9 +7,6 @@ import axios from 'axios'
 // import ElementUI from 'element-ui';
 // import 'element-ui/lib/theme-chalk/index.css';
 import '@/assets/less/reset.less' // 全局样式
-import {
-  Message
-} from 'element-ui'
 
 import {
   Button,
@@ -22,6 +19,7 @@ import {
   Menu,
   MenuItem,
   MenuItemGroup,
+  Message,
   Submenu,
   Dropdown,
   DropdownItem,
@@ -88,7 +86,5 @@ if (process.env.NODE_ENV === 'development') require('@/api/mock')
 new Vue({
   router,
   store,
-
-
   render: h => h(App)
 }).$mount('#app')
