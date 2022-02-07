@@ -23,12 +23,12 @@ const routes = [{
                 component: () =>
                     import ('@/views/Home/Home')
             }, {
-                path: '/mall',
+                path: 'mall',
                 name: 'mall',
                 component: () =>
                     import ('@/views/Mall/Mall')
             }, {
-                path: '/user',
+                path: 'user',
                 name: 'user',
                 component: () =>
                     import ('@/views/User/User')
@@ -36,9 +36,7 @@ const routes = [{
             {
                 path: '/',
                 name: 'dataAnalysis',
-                children: [
-
-                ]
+                children: []
             },
             {
                 path: '/wordYun',
