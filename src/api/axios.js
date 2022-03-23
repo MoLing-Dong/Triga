@@ -59,4 +59,4 @@ class HttpRequst {
   }
 }
 
-export default new HttpRequst(baseUrl)
+export default new  (baseUrl)

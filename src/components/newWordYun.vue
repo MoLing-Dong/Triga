@@ -7,7 +7,7 @@
 </template>
 <script>
 export default {
-  data () {
+  data() {
     return {
       wordList: [
         '步步登高',
@@ -30,19 +30,19 @@ export default {
     }
   },
 
-  mounted () {
+  mounted() {
     this.main()
   },
   methods: {
-    main () {
+    main() {
       var tagEle =
-          'querySelectorAll' in document
-            ? document.querySelectorAll('.tag')
-            : getClass('tag')
+        'querySelectorAll' in document
+          ? document.querySelectorAll('.tag')
+          : getClass('tag')
       var paper =
-          'querySelectorAll' in document
-            ? document.querySelector('.tagBall')
-            : getClass('tagBall')[0]
+        'querySelectorAll' in document
+          ? document.querySelector('.tagBall')
+          : getClass('tagBall')[0]
       var RADIUS = 300
       var fallLength = 500
       var tags = []
@@ -51,19 +51,20 @@ export default {
       var CX = paper.offsetWidth / 2
       var CY = paper.offsetHeight / 2
       var EX =
-          paper.offsetLeft +
-          document.body.scrollLeft +
-          document.documentElement.scrollLeft
+        paper.offsetLeft +
+        document.body.scrollLeft +
+        document.documentElement.scrollLeft
       var EY =
-          paper.offsetTop +
-          document.body.scrollTop +
-          document.documentElement.scrollTop
+        paper.offsetTop +
+        document.body.scrollTop +
+        document.documentElement.scrollTop
 
       console.log(tagEle)
       console.log(paper)
-      function getClass (className) {
+
+      function getClass(className) {
         var ele = document.getElementsByTagName('*')
-        var classEle = []
+        let classEle = [];
         for (var i = 0; i < ele.length; i++) {
           var cn = ele[i].className
           if (cn === className) {
@@ -73,12 +74,12 @@ export default {
         return classEle
       }
 
-      function innit () {
+      function innit() {
         for (var i = 0; i < tagEle.length; i++) {
-          var a, b
+          let a, b;
           var k = (2 * (i + 1) - 1) / tagEle.length - 1
-          var a = Math.acos(k)
-          var b = a * Math.sqrt(tagEle.length * Math.PI)
+          a = Math.acos(k);
+          b = a * Math.sqrt(tagEle.length * Math.PI);
           // var a = Math.random()*2*Math.PI;
           // var b = Math.random()*2*Math.PI;
           var x = RADIUS * Math.sin(a) * Math.cos(b)
@@ -97,7 +98,7 @@ export default {
         }
       }
 
-      function animate () {
+      function animate() {
         setInterval(function () {
           rotateX()
           rotateY()
@@ -125,7 +126,7 @@ export default {
         })
       }
 
-      function rotateX () {
+      function rotateX() {
         var cos = Math.cos(angleX)
         var sin = Math.sin(angleX)
         tags.forEach(function () {
@@ -136,7 +137,7 @@ export default {
         })
       }
 
-      function rotateY () {
+      function rotateY() {
         var cos = Math.cos(angleY)
         var sin = Math.sin(angleY)
         tags.forEach(function () {
@@ -175,25 +176,25 @@ export default {
 </script>
 <style lang="less" scoped>
 .tagBall {
-            width: 40rem;
-            height: 40rem;
-            margin:  auto;
-            position: relative;
-        }
+  width: 40rem;
+  height: 40rem;
+  margin: auto;
+  position: relative;
+}
 
-        .tag {
-            display: block;
-            position: absolute;
-            left: 0px;
-            top: 0px;
-            color: #000;
-            text-decoration: none;
-            font-size: 15px;
-            font-family: "微软雅黑";
-            font-weight: bold;
-        }
+.tag {
+  display: block;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  color: #000;
+  text-decoration: none;
+  font-size: 15px;
+  font-family: "微软雅黑";
+  font-weight: bold;
+}
 
-        .tag:hover {
-            border: 1px solid #666;
-        }
+.tag:hover {
+  border: 1px solid #666;
+}
 </style>

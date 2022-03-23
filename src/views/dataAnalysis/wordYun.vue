@@ -1,20 +1,22 @@
 <template>
-  <el-card class="box-card"> <word> </word></el-card>
+  <el-card class="box-card">
+    <word></word>
+  </el-card>
 </template>
 
 <script>
-import Word from '@/views/Tools/newWordYun.vue'
+import Word from '@/components/newWordYun.vue'
 
 export default {
   name: '',
-  data () {
+  data() {
     return {}
   },
-  components: { Word },
+  components: {Word},
 
   methods: {}
 }
 </script>
 
-<style  scoped>
+<style scoped>
 </style>

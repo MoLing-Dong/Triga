@@ -8,6 +8,7 @@ export default {
       label: '首页',
       icon: 'home'
     }]
+    
   },
   mutations: {
     collapseMenu (state) {

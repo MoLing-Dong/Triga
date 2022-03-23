@@ -69,103 +69,103 @@
 </template>
 <script>
 // eslint-disable-next-line quotes
-import { getHome } from "../../api/data"
-import Echart from '@/components/ECharts.vue'
+import { getHome } from "../../api/data";
+import Echart from "@/components/ECharts.vue";
 // import Word from "@/views/Tools/newWordYun.vue";
 
 export default {
-  name: 'Home',
+  name: "Home",
   components: { Echart },
-  data () {
+  data() {
     return {
-      userImg: require('../../assets/logo.png'),
+      userImg: require("../../assets/logo.png"),
 
       countData: [
         {
-          icon: 'success',
-          color: '#2ec7c9'
+          icon: "success",
+          color: "#2ec7c9",
         },
         {
-          icon: 'star-on',
-          color: '#ffb980'
+          icon: "star-on",
+          color: "#ffb980",
         },
         {
-          icon: 's-goods',
-          color: '#5ab1ef'
+          icon: "s-goods",
+          color: "#5ab1ef",
         },
         {
-          icon: 'success',
-          color: '#2ec7c9'
+          icon: "success",
+          color: "#2ec7c9",
         },
         {
-          icon: 'star-on',
-          color: '#ffb980'
+          icon: "star-on",
+          color: "#ffb980",
         },
         {
-          icon: 's-goods',
-          color: '#5ab1ef'
-        }
+          icon: "s-goods",
+          color: "#5ab1ef",
+        },
       ],
       echartData: {
         order: {
           xData: [],
-          series: []
+          series: [],
         },
         user: {
           xData: [],
-          series: []
+          series: [],
         },
         video: {
-          series: []
-        }
-      }
-    }
+          series: [],
+        },
+      },
+    };
   },
   methods: {
-    getTableData () {
+    getTableData() {
       getHome().then((res) => {
         this.countData = this.countData.map((item, index) => {
-          return { ...item, ...res.data.countData[index] }
-        })
+          return { ...item, ...res.data.countData[index] };
+        });
         // 折线图的展示
-        const order = res.data.orderData
-        const keyArray = Object.keys(order.data[0])
+        const order = res.data.orderData;
+        const keyArray = Object.keys(order.data[0]);
         // const myEchartsOrder = echarts.init(this.$refs.echart);
         // myEchartsOrder.setOption(this.echartsData.order);
         // 传给组件的值
-        this.echartData.order.xData = order.date
+        this.echartData.order.xData = order.date;
         keyArray.forEach((key) => {
           this.echartData.order.series.push({
             name: key,
             data: order.data.map((item) => item[key]),
-            type: 'line'
-          })
-        }) // 用户图
-        this.echartData.user.xData = res.data.userData.map((item) => item.date)
+            type: "line",
+          });
+        }); // 用户图
+        this.echartData.user.xData = res.data.userData.map((item) => item.date);
         this.echartData.user.series.push({
-          name: '新增用户',
+          name: "新增用户",
           data: res.data.userData.map((item) => item.new),
-          type: 'bar'
-        })
+          type: "bar",
+        });
         this.echartData.user.series.push({
-          name: '活跃用户',
+          name: "活跃用户",
           data: res.data.userData.map((item) => item.active),
-          type: 'bar'
-        })
+          type: "bar",
+        });
         this.echartData.video.series.push({
           data: res.data.videoData,
-          type: 'pie'
-        })
-      })
-    // eslint-disable-next-line comma-dangle
+          type: "pie",
+        });
+      });
+      // eslint-disable-next-line comma-dangle
     },
   },
-  mounted () {
-    this.getTableData()
-  }
-}
+  mounted() {
+    this.getTableData();
+  },
+};
 </script>
-<style lang='less' scoped>
+<style lang="less" scoped>
 @import "~@/assets/less/home";
 </style>
 <style lang="less" scoped>
