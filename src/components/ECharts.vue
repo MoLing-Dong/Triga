@@ -2,7 +2,7 @@
   <div ref="echart"></div>
 </template>
 
-<script>
+<script>   
 import * as echarts from 'echarts'
 export default {
   props: {
